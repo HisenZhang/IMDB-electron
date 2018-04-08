@@ -1,4 +1,5 @@
 {
+    "name": "imdb",
     "author": "H.Z.",
     "description": "A front end for IMDB database API.",
     "license": "MIT",
