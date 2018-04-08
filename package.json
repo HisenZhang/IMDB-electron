@@ -1,0 +1,18 @@
+{
+    "author": "H.Z.",
+    "description": "A front end for IMDB database API.",
+    "license": "MIT",
+    "version": "0.0.0",
+    "main": "./static/main.js",
+    "devDependencies": {
+        "electron": "^1.8.4",
+        "electron-packager": "^12.0.0"
+    },
+    "scripts": {
+        "start": "electron .",
+        "packageDarwin": "electron-packager . IMDB --platform=darwin --arch=x64  --out=./dist --asar --version 1.8.4 --prune --overwrite --ignore=\"(dist|src|docs|.gitignore|LICENSE|README.md|webpack.config*|node_modules|configure|controller|crawler.py|imdb-api.py|database|run.sh)\"",
+        "packageWin": "electron-packager . IMDB --platform=win32 --arch=x64 --out=./dist --asar --version 1.8.4 --prune --overwrite --ignore=\"(dist|src|docs|.gitignore|LICENSE|README.md|webpack.config.js|node_modules|configure|controller|crawler.py|imdb-api.py|database|run.sh)\"",
+        "packageLinux": "electron-packager . IMDB --platform=linux --arch=x64 --out=./dist --asar --version 1.8.4 --prune --overwrite --ignore=\"(dist|src|docs|.gitignore|LICENSE|README.md|webpack.config.js|node_modules|configure|controller|crawler.py|imdb-api.py|database|run.sh)\""
+    },
+    "dependencies": {}
+}

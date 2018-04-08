@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>IMDB</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="milligram.css">
+    <script src="index.js"></script>
+</head>
+
+<body style="overflow:hidden;overflow-y:hidden;margin:5vh">
+    <div class="row">
+        <div class="column" id="list_col">
+            <div class="container" style="height:90vh">
+                <h1>
+                    <font color="#9b4dca">PLAY&nbsp;&nbsp;&nbsp;#</font>
+                </h1>
+                <hr>
+                <ul id="video_list" style="height:80%;overflow-y:auto"></ul>
+
+                <!-- <hr size="666" width="1"> -->
+            </div>
+        </div>
+
+        <div class="column column-75" id="cont_col">
+            <span id="title_bar">
+				<h1 id="title" style="margin-right:5%">Lorem ipsum dolor sit amet</h1></span>
+            <hr>
+            <div class="row">
+                <div class="column" id="info_col">
+                    <h2>Info</h2>
+                    <p id="theme">Theme:</p>
+                    <p id="date">Update:</p>
+                    <p id="movie_id">Video ID:</p><br>
+                    <button onclick="fetch_random_content()" style="width:98%">Get Random</button><br>
+                    <input type="text" placeholder="Video ID" id="movie_id_input" style="width:48%">
+                    <button class="button button-outline" style="width:48%" onclick="fetch_by_input_content()">Go</button>
+                </div>
+                <div class="column column-75" id="img_link_col">
+                    <h2>Preview</h2>
+                    <img id="image" onclick="get_dl_link()" style="width:80%;height:auto;" src="">
+                    <p id="dl_link" style="width:80%;word-break:break-all;">Click on image and get download link.</p>
+                </div>
+            </div>
+            <span id="footnotes"><hr>
+				<h2>Notes</h2>
+				<ol>
+					<li>Click 'Get Random' to fetch video data.</li>
+					<li>Enter the video ID and click on 'Go'.</li>
+					<li>Play history is on the left. Click on titles to go back.</li>
+				</ol>
+			</span>
+
+        </div>
+    </div>
+
+</body>
+
+</html>
