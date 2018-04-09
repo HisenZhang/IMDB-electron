@@ -53,10 +53,12 @@ function fetch_random_content() {
 
 function fetch_by_input_content() {
     movie_id = document.getElementById('movie_id_input').value
-    xhr = new XMLHttpRequest();
-    xhr.open("GET", VIDEO_INFO_API + '?movie_id=' + movie_id, false);
-    xhr_handler();
-    templating();
+    if (movie_id != '') {
+        xhr = new XMLHttpRequest();
+        xhr.open("GET", VIDEO_INFO_API + '?movie_id=' + movie_id, false);
+        xhr_handler();
+        templating();
+    }
 }
 
 

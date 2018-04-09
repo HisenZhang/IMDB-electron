@@ -39,7 +39,6 @@ def get_video():
 def get_dl_addr():
 	dl_url = request.args.get('dl_url')
 	dl_link = fetch_dl_link(dl_url)
-	# html =  '''<video src="%s" x-webkit-airplay="true" webkit-playsinline="true"></video>'''%dl_link
 	return dl_link if dl_link else 'N/A'
 
 if __name__ == '__main__':
