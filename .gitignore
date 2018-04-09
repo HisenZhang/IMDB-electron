@@ -14,7 +14,7 @@ TODO
 build/
 node_modules/
 develop-eggs/
-database/*
+database/*.db
 .idea/
 .vscode/
 dist/
