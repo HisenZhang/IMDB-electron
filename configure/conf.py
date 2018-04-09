@@ -1,5 +1,6 @@
 # flask
-HOST = '192.168.2.170'
+# HOST = '192.168.2.170'
+HOST = '127.0.0.1'
 PORT = 9000
 DEBUG_MODE = 0
 API_HELP = {

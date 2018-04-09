@@ -1,6 +1,6 @@
 const ROOT_DIR = 'https://www.1304f.com';
-const VIDEO_INFO_API = 'http://192.168.2.170:9000/video/';
-const DL_LINK_API = 'http://192.168.2.170:9000/download/';
+const VIDEO_INFO_API = 'http://127.0.0.1:9000/video/';
+const DL_LINK_API = 'http://127.0.0.1:9000/download/';
 
 var rsp;
 var xhr;
@@ -16,10 +16,11 @@ function append_list() {
 }
 
 function xhr_handler() {
-    xhr.onload = function(e) {
+    xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
                 console.log(xhr.responseText);
+                templating();
             } else {
                 console.error(xhr.statusText);
             }
@@ -45,9 +46,8 @@ function templating() {
 
 function fetch_random_content() {
     xhr = new XMLHttpRequest();
-    xhr.open("GET", VIDEO_INFO_API + '?movie_id=0', false);
+    xhr.open("GET", VIDEO_INFO_API + '?movie_id=0', true);
     xhr_handler();
-    templating();
 }
 
 
@@ -55,23 +55,21 @@ function fetch_by_input_content() {
     movie_id = document.getElementById('movie_id_input').value
     if (movie_id != '') {
         xhr = new XMLHttpRequest();
-        xhr.open("GET", VIDEO_INFO_API + '?movie_id=' + movie_id, false);
+        xhr.open("GET", VIDEO_INFO_API + '?movie_id=' + movie_id, true);
         xhr_handler();
-        templating();
     }
 }
 
 
 function fetch_by_id_content(list_id) {
     xhr = new XMLHttpRequest();
-    xhr.open("GET", VIDEO_INFO_API + '?movie_id=' + list_id, false);
+    xhr.open("GET", VIDEO_INFO_API + '?movie_id=' + list_id, true);
     xhr_handler();
-    templating();
 }
 
 function get_dl_link() {
     xhr = new XMLHttpRequest();
-    xhr.open("GET", DL_LINK_API + '?dl_url=' + ROOT_DIR + rsp[0].pg_link, false);
+    xhr.open("GET", DL_LINK_API + '?dl_url=' + ROOT_DIR + rsp[0].pg_link, true);
     xhr_handler();
     document.getElementById('dl_link').innerHTML = xhr.responseText
     window.open(xhr.responseText, 'Video', channelmode = 1);
