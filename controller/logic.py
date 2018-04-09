@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import requests, random
 
 def get_random_id():
-    return random.randint(0,ALL_RECORD_NUM+1)
+	return random.randint(0,ALL_RECORD_NUM+1)
 
 def create_result_json(result):
 	result_json = []
@@ -23,3 +23,13 @@ def fetch_dl_link(dl_url):
 	bsOBJ = BeautifulSoup(r.content,'lxml')
 	dl_link = bsOBJ.find_all("font")[1].get_text()
 	return dl_link
+
+def create_multi_kw_query(kw):
+	kw_list = kw.split(' ')
+	sql_query_temp = []
+	for i in kw_list:
+		if kw_list.index(i)+1 < len(kw_list):
+			sql_query_temp.append('title LIKE \'%{}%\' AND '.format(i))
+		else:
+			sql_query_temp.append('title LIKE \'%{}%\''.format(i))
+	return ''.join(sql_query_temp)
