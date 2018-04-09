@@ -21,13 +21,16 @@ def get_help():
 
 @app.route('/video/')
 def get_video():
-	is_random = request.args.get('is_random')
-	if is_random:
-		movie_id = get_random_id()
-	else:
-		movie_id = request.args.get('movie_id')
+	movie_id = request.args.get('movie_id')
+	try:
+		movie_id = int(movie_id)
+		if movie_id == 0:
+			movie_id = get_random_id()
+		result = db_select_by_id(cursor,movie_id)
+	except ValueError:
+		result = db_select_by_kw(cursor,movie_id)
 	# movie_id = request.args.get('id')
-	result = db_select_by_id(cursor,movie_id)
+
 	result_json = create_result_json(result)
 	print(result_json)
 	return jsonify(result_json) if result_json else 'N/A'

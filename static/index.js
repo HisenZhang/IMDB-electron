@@ -45,7 +45,7 @@ function templating() {
 
 function fetch_random_content() {
     xhr = new XMLHttpRequest();
-    xhr.open("GET", VIDEO_INFO_API + '?is_random=1', false);
+    xhr.open("GET", VIDEO_INFO_API + '?movie_id=0', false);
     xhr_handler();
     templating();
 }
