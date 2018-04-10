@@ -5,10 +5,7 @@ from configure.conf import *
 import requests
 
 
-
-conn = db_connect()
-cursor = conn.cursor()
-
+db = Database()
 app = Flask(__name__,static_url_path='')
 
 @app.route('/')
@@ -29,10 +26,10 @@ def get_video():
 			movie_id = get_random_id()
 		if movie_id > ALL_RECORD_NUM:
 			result = [None,'Video #{} not found'.format(movie_id),None,None,None,None]
-		result = db_select_by_id(cursor,movie_id)
+		result = db.select_by_id(movie_id)
 	except ValueError:
 		multi_kw_query = create_multi_kw_query(movie_id)
-		result = db_select_by_kw(cursor,multi_kw_query)
+		result = db.select_by_kw(multi_kw_query)
 
 	result_json = create_result_json(result)
 	print(result_json)
