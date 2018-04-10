@@ -5,6 +5,18 @@ import requests, random
 def get_random_id():
 	return random.randint(0,ALL_RECORD_NUM+1)
 
+def get_video_arg_process(db,movie_id):
+	try:
+		movie_id = int(movie_id)
+		if movie_id == 0:
+			movie_id = get_random_id()
+		if movie_id > ALL_RECORD_NUM:
+			result = [None,'Video #{} not found'.format(movie_id),None,None,None,None]
+		return db.select_by_id(movie_id)
+	except ValueError:
+		multi_kw_query = create_multi_kw_query(movie_id)
+		return db.select_by_kw(multi_kw_query)
+		
 def create_result_json(result):
 	result_json = []
 	for i in range(0,len(result)):

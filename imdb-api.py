@@ -19,18 +19,7 @@ def get_help():
 @app.route('/video/')
 def get_video():
 	movie_id = request.args.get('movie_id').strip()
-	
-	try:
-		movie_id = int(movie_id)
-		if movie_id == 0:
-			movie_id = get_random_id()
-		if movie_id > ALL_RECORD_NUM:
-			result = [None,'Video #{} not found'.format(movie_id),None,None,None,None]
-		result = db.select_by_id(movie_id)
-	except ValueError:
-		multi_kw_query = create_multi_kw_query(movie_id)
-		result = db.select_by_kw(multi_kw_query)
-
+	result = get_video_arg_process(db,movie_id)
 	result_json = create_result_json(result)
 	print(result_json)
 	return jsonify(result_json) if result_json else 'N/A'
