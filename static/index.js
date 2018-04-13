@@ -22,6 +22,7 @@ function xhr_handler() {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
                 console.log(xhr.responseText);
+                templating();
             } else {
                 console.error(xhr.statusText);
             }
@@ -48,7 +49,6 @@ function templating() {
 function fetch_random_content() {
     xhr.open("GET", VIDEO_INFO_API + '?movie_id=0', true);
     xhr_handler();
-    templating();
 }
 
 
@@ -57,7 +57,6 @@ function fetch_by_input_content() {
     if (movie_id != '') {
         xhr.open("GET", VIDEO_INFO_API + '?movie_id=' + movie_id, true);
         xhr_handler();
-        templating();
     }
 }
 
@@ -65,12 +64,23 @@ function fetch_by_input_content() {
 function fetch_by_id_content(list_id) {
     xhr.open("GET", VIDEO_INFO_API + '?movie_id=' + list_id, true);
     xhr_handler();
-    templating();
 }
 
 function get_dl_link() {
     xhr.open("GET", DL_LINK_API + '?dl_url=' + ROOT_DIR + rsp[0].pg_link, false);
-    xhr_handler();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                console.log(xhr.responseText);
+            } else {
+                console.error(xhr.statusText);
+            }
+        }
+    };
+    xhr.onerror = function(e) {
+        console.error(xhr.statusText);
+    };
+    xhr.send(null);
     document.getElementById('dl_link').innerHTML = xhr.responseText
     window.open(xhr.responseText, 'Video', channelmode = 1);
 }
