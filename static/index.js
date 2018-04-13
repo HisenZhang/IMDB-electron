@@ -67,7 +67,7 @@ function fetch_by_id_content(list_id) {
 }
 
 function get_dl_link() {
-    xhr.open("GET", DL_LINK_API + '?dl_url=' + ROOT_DIR + rsp[0].pg_link, true);
+    xhr.open("GET", DL_LINK_API + '?dl_url=' + ROOT_DIR + rsp[0].pg_link, false);
     xhr_handler();
     document.getElementById('dl_link').innerHTML = xhr.responseText
     window.open(xhr.responseText, 'Video', channelmode = 1);
