@@ -6,14 +6,16 @@ const DL_LINK_API = HOST + '/download/';
 var rsp;
 var dl;
 var xhr = new XMLHttpRequest();
+var video_list = document.getElementById('video_list');
 
 
 function append_list() {
     for (var i = 0; i < rsp.length; i++) {
         item = document.createElement('li');
         item.innerHTML += "<a id=\"" + rsp[i].movie_id + "\"onclick=\"fetch_by_id_content(" + rsp[i].movie_id + ")\">" + rsp[i].title + "</a>";
-        video_list = document.getElementById('video_list');
-        video_list.appendChild(item);
+        if !(item in video_list) {
+            video_list.appendChild(item);
+        }
     }
 }
 
