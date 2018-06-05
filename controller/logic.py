@@ -38,10 +38,5 @@ def fetch_dl_link(dl_url):
 
 def create_multi_kw_query(kw):
 	kw_list = kw.split(' ')
-	sql_query_temp = []
-	for i in kw_list:
-		if kw_list.index(i)+1 < len(kw_list):
-			sql_query_temp.append('title LIKE \'%{}%\' AND '.format(i))
-		else:
-			sql_query_temp.append('title LIKE \'%{}%\''.format(i))
-	return ''.join(sql_query_temp)
+	sql_query = list(map(lambda x: 'title LIKE \'%{}%\''.format(x),kw_list))
+	return ' AND '.join(sql_query)
