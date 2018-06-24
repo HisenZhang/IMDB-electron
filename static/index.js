@@ -1,7 +1,7 @@
-const ROOT_DIR = 'https://www.1304f.com';
-const HOST = 'http://127.0.0.1:9000';
-const VIDEO_INFO_API = HOST + '/video/';
-const DL_LINK_API = HOST + '/download/';
+var ROOT_DIR = 'https://www.1304f.com';
+var HOST = 'http://127.0.0.1:9000';
+var VIDEO_INFO_API = HOST + '/video/';
+var DL_LINK_API = HOST + '/download/';
 
 var rsp;
 var dl;
@@ -89,4 +89,8 @@ function get_dl_link() {
     xhr.send(null);
     document.getElementById('dl_link').innerHTML = xhr.responseText
     window.open(xhr.responseText, 'Video', channelmode = 1);
+}
+
+function change_host() {
+    HOST = document.getElementById('host').value;
 }

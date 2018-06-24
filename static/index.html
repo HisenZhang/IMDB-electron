@@ -42,17 +42,26 @@
                     <!-- data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII= -->
                     <p id="dl_link" style="word-break:break-all;">Click on image to play and get download link.</p>
                 </div>
+            </div><br>
+            <div class="row">
+                <div class="column" id="host_col">
+                    <h2>Host</h2>
+                    <hr>
+                    <input type="text" id="host" placeholder="http://127.0.0.1:9000" style="width:98%">
+                    <button style="width:98%" onclick="change_host()">Connect</button>
+                </div>
+                <div class="column column-75" id="footnotes">
+                    <h2>Notes</h2>
+                    <hr>
+                    <ol>
+                        <li>Click on 'Get Random' to fetch a video by random.</li>
+                        <li>Enter the video ID or keyword and click on 'Go' to fetch specific one.</li>
+                        <li>Click on image to view the video online.</li>
+                        <li>Links are also available once the image is clicked.</li>
+                        <li>Play history is on the left. Click on titles to go back.</li>
+                    </ol>
+                </div>
             </div>
-            <span id="footnotes"><hr>
-				<h2>Notes</h2>
-				<ol>
-					<li>Click on 'Get Random' to fetch a video by random.</li>
-                    <li>Enter the video ID or keyword and click on 'Go' to fetch specific one.</li>
-                    <li>Click on image to view the video online.</li>
-                    <li>Links are also available once the image is clicked.</li>
-					<li>Play history is on the left. Click on titles to go back.</li>
-				</ol>
-			</span>
 
         </div>
     </div>

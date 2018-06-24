@@ -9,12 +9,12 @@ let win;
 function createWindow() {
     win = new BrowserWindow({
         width: 900,
-        height: 900,
+        height: 950,
         minHeight: 600,
         // frame: false,
         // transparent: true
     });
-    win.setMenu(null);
+    // win.setMenu(null);
     win.loadURL(`file://${__dirname}/index.html`);
     win.on("closed", function() {
         win = null;
