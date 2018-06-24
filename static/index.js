@@ -90,8 +90,9 @@ function get_dl_link() {
         console.error(xhr.statusText);
     };
     xhr.send(null);
-    document.getElementById('dl_link').innerHTML = xhr.responseText
-    window.open(xhr.responseText, 'Video', channelmode = 1);
+    document.getElementById('dl_link').innerHTML = xhr.responseText;
+    alert(xhr.responseText);
+    // window.open(xhr.responseText, 'Video', channelmode = 1);
 }
 
 function change_host() {
