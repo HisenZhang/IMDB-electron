@@ -16,6 +16,10 @@ def index():
 def get_help():
 	return jsonify(API_HELP)
 
+@app.route('/meta/')
+def get_meta():
+	return 'Not implemented yet.'
+
 @app.route('/video/')
 def get_video():
 	movie_id = request.args.get('movie_id').strip()
