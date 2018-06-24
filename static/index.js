@@ -7,6 +7,7 @@ var rsp;
 var dl;
 var xhr = new XMLHttpRequest();
 var video_id_list = new Array();
+var video_list_len = 0;
 
 
 function append_list() {
@@ -18,9 +19,11 @@ function append_list() {
             item = document.createElement('li');
             item.innerHTML += "<a id=\"" + rsp[i].movie_id + "\"onclick=\"fetch_by_id_content(" + rsp[i].movie_id + ")\">" + rsp[i].title + "</a>";
             video_list.appendChild(item);
+            video_list_len += 1;
             video_id_list.push(rsp[i].movie_id);
         }
     }
+    show_video_list_len();
 }
 
 function xhr_handler() {
@@ -93,4 +96,10 @@ function get_dl_link() {
 
 function change_host() {
     HOST = document.getElementById('host').value;
+    VIDEO_INFO_API = HOST + '/video/';
+    DL_LINK_API = HOST + '/download/';
+}
+
+function show_video_list_len() {
+    document.getElementById("video_list_len").innerHTML = video_list_len;
 }
