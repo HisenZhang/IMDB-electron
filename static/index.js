@@ -1,5 +1,5 @@
 var ROOT_DIR = 'https://www.1304f.com';
-var HOST = 'http://127.0.0.1:9000';
+var HOST = 'http://0.0.0.0:9000';
 var VIDEO_INFO_API = HOST + '/video/';
 var DL_LINK_API = HOST + '/download/';
 
