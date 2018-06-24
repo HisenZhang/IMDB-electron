@@ -10,6 +10,9 @@ API_HELP = {
     'status': u'proxy statistics'
 }
 
+# client
+CLIENT_NEWEST_VERSION = (0,4,0)
+
 # database
 ALL_RECORD_NUM = 16587
 LAST_UPDATE = '2018-04-07'
