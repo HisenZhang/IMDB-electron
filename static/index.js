@@ -2,7 +2,11 @@ var ROOT_DIR = 'https://www.1304f.com';
 var HOST = 'http://0.0.0.0:9000';
 var VIDEO_INFO_API = HOST + '/video/';
 var DL_LINK_API = HOST + '/download/';
+<<<<<<< HEAD
 var client_version = [0, 4, 0];
+=======
+var client_version = '0.4.0';
+>>>>>>> 7ca965b5822d23dfb4a4f18a126d6d20e68641ca
 var client_newest_version;
 
 var rsp;
