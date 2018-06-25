@@ -2,11 +2,7 @@ var ROOT_DIR = 'https://www.1304f.com';
 var HOST = 'http://0.0.0.0:9000';
 var VIDEO_INFO_API = HOST + '/video/';
 var DL_LINK_API = HOST + '/download/';
-<<<<<<< HEAD
 var client_version = [0, 4, 0];
-=======
-var client_version = '0.4.0';
->>>>>>> 7ca965b5822d23dfb4a4f18a126d6d20e68641ca
 var client_newest_version;
 
 var rsp;
@@ -54,13 +50,14 @@ function xhr_handler(need_templating, need_errorhandler) {
     if (need_errorhandler) {
         xhr.onerror = function(e) {
             console.error(xhr.statusText);
+            alert('Failed to connect to the specified host.');
         }
     }
     xhr.send(null);
 }
 
 function templating() {
-    rsp = eval(xhr.response);
+    rsp = JSON.parse(xhr.response);
     document.getElementById('title').innerHTML = rsp[0].title;
     document.getElementById('theme').innerHTML = 'Theme: ' + rsp[0].theme;
     document.getElementById('date').innerHTML = 'Update: ' + rsp[0].date;
@@ -72,13 +69,9 @@ function templating() {
 }
 
 function fetch_meta() {
-    xhr.open("GET", HOST + '/meta/', true);
-    xhr.onerror = function(e) {
-        console.error(xhr.statusText);
-        alert('Cannot connect to the specified host.')
-    }
-    xhr_handler(false, false);
-    rsp = eval(xhr.response);
+    xhr.open("GET", HOST + '/meta/', false);
+    xhr_handler(false);
+    rsp = JSON.parse(xhr.responseText);
     client_newest_version = rsp.client_newest_version;
     ROOT_DIR = rsp.root_url;
 }
