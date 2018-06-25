@@ -4,14 +4,17 @@ HOST = '0.0.0.0'
 PORT = 9000
 DEBUG_MODE = 0
 API_HELP = {
-    'by_id': u'get an result by id',
-    'refresh': u'refresh proxy pool',
-    'random': u'get an result by random',
-    'status': u'proxy statistics'
+	'/help/':u'[GET] Show this help',
+	'/meta/':u'[GET] Meta info',
+	'/video/':u'[GET] Fetch video (by id / keywords)',
+	'/download/':u'[GET] Fetch video download link',
 }
 
-# client
+# meta
 CLIENT_NEWEST_VERSION = (0,4,0)
+META = {
+    'client_newest_version': CLIENT_NEWEST_VERSION
+}
 
 # database
 ALL_RECORD_NUM = 16587

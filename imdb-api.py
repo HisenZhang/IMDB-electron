@@ -18,7 +18,7 @@ def get_help():
 
 @app.route('/meta/')
 def get_meta():
-	return 'Not implemented yet.'
+	return jsonify(META)
 
 @app.route('/video/')
 def get_video():
