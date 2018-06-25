@@ -11,9 +11,11 @@ API_HELP = {
 }
 
 # meta
+ROOT_URL = 'https://www.1304b.com'
 CLIENT_NEWEST_VERSION = (0,4,0)
 META = {
-    'client_newest_version': CLIENT_NEWEST_VERSION
+    'client_newest_version': CLIENT_NEWEST_VERSION,
+	'root_url':ROOT_URL
 }
 
 # database
@@ -21,7 +23,6 @@ ALL_RECORD_NUM = 16587
 LAST_UPDATE = '2018-04-07'
 
 # crawler
-ROOT_URL = 'https://www.1304b.com'
 DATE_EXCEPTION = ['苍井空','宇都宮紫苑','泷泽萝拉']
 directory = {
 	'国产精品':'/Html/60/',

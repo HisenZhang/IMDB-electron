@@ -2,6 +2,8 @@ var ROOT_DIR = 'https://www.1304f.com';
 var HOST = 'http://0.0.0.0:9000';
 var VIDEO_INFO_API = HOST + '/video/';
 var DL_LINK_API = HOST + '/download/';
+var client_version = [0, 4, 0];
+var client_newest_version;
 
 var rsp;
 var dl;
@@ -26,20 +28,30 @@ function append_list() {
     show_video_list_len();
 }
 
-function xhr_handler() {
+function xhr_handler(need_templating, need_errorhandler) {
+    if (need_templating === undefined) {
+        need_templating = true;
+    }
+    if (need_errorhandler === undefined) {
+        need_errorhandler = true;
+    }
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
                 console.log(xhr.responseText);
-                templating();
+                if (need_templating) {
+                    templating();
+                }
             } else {
                 console.error(xhr.statusText);
             }
         }
     };
-    xhr.onerror = function(e) {
-        console.error(xhr.statusText);
-    };
+    if (need_errorhandler) {
+        xhr.onerror = function(e) {
+            console.error(xhr.statusText);
+        }
+    }
     xhr.send(null);
 }
 
@@ -53,6 +65,18 @@ function templating() {
     document.getElementById('dl_link').innerHTML = 'Click on image and get download link.'
 
     append_list();
+}
+
+function fetch_meta() {
+    xhr.open("GET", HOST + '/meta/', true);
+    xhr.onerror = function(e) {
+        console.error(xhr.statusText);
+        alert('Cannot connect to the specified host.')
+    }
+    xhr_handler(false, false);
+    rsp = eval(xhr.response);
+    client_newest_version = rsp.client_newest_version;
+    ROOT_DIR = rsp.root_url;
 }
 
 function fetch_random_content() {
@@ -77,19 +101,7 @@ function fetch_by_id_content(list_id) {
 
 function get_dl_link() {
     xhr.open("GET", DL_LINK_API + '?dl_url=' + ROOT_DIR + rsp[0].pg_link, false);
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4) {
-            if (xhr.status === 200) {
-                console.log(xhr.responseText);
-            } else {
-                console.error(xhr.statusText);
-            }
-        }
-    };
-    xhr.onerror = function(e) {
-        console.error(xhr.statusText);
-    };
-    xhr.send(null);
+    xhr_handler(false);
     document.getElementById('dl_link').innerHTML = xhr.responseText;
     alert(xhr.responseText);
     // window.open(xhr.responseText, 'Video', channelmode = 1);
@@ -99,6 +111,7 @@ function change_host() {
     HOST = document.getElementById('host').value;
     VIDEO_INFO_API = HOST + '/video/';
     DL_LINK_API = HOST + '/download/';
+    fetch_meta();
 }
 
 function show_video_list_len() {
