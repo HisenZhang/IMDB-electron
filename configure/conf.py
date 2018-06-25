@@ -12,7 +12,7 @@ API_HELP = {
 
 # meta
 ROOT_URL = 'https://www.1304b.com'
-CLIENT_NEWEST_VERSION = (0,4,0)
+CLIENT_NEWEST_VERSION = (0,4,1)
 META = {
     'client_newest_version': CLIENT_NEWEST_VERSION,
 	'root_url':ROOT_URL
