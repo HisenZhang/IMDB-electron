@@ -14,15 +14,15 @@ var video_list_len = 0;
 
 function append_list() {
     video_list = document.getElementById('video_list');
-    for (var i = 0; i < rsp.length; i++) {
-        if (video_id_list.includes(rsp[i].movie_id)) {
+    for (var i = 0; i < rsp.meta.length; i++) {
+        if (video_id_list.includes(rsp.content[i].movie_id)) {
             continue
         } else {
             item = document.createElement('li');
-            item.innerHTML += "<a id=\"" + rsp[i].movie_id + "\"onclick=\"fetch_by_id_content(" + rsp[i].movie_id + ")\">" + rsp[i].title + "</a>";
+            item.innerHTML += "<a id=\"" + rsp.content[i].movie_id + "\"onclick=\"fetch_by_id_content(" + rsp.content[i].movie_id + ")\">" + rsp.content[i].title + "</a>";
             video_list.appendChild(item);
             video_list_len += 1;
-            video_id_list.push(rsp[i].movie_id);
+            video_id_list.push(rsp.content[i].movie_id);
         }
     }
     show_video_list_len();
@@ -58,11 +58,11 @@ function xhr_handler(need_templating, need_errorhandler) {
 
 function templating() {
     rsp = JSON.parse(xhr.response);
-    document.getElementById('title').innerHTML = rsp[0].title;
-    document.getElementById('theme').innerHTML = 'Theme: ' + rsp[0].theme;
-    document.getElementById('date').innerHTML = 'Update: ' + rsp[0].date;
-    document.getElementById('movie_id').innerHTML = 'Video ID: ' + rsp[0].movie_id;
-    document.getElementById('image').src = rsp[0].img_link;
+    document.getElementById('title').innerHTML = rsp.content[0].title;
+    document.getElementById('theme').innerHTML = 'Theme: ' + rsp.content[0].theme;
+    document.getElementById('date').innerHTML = 'Update: ' + rsp.content[0].date;
+    document.getElementById('movie_id').innerHTML = 'Video ID: ' + rsp.content[0].movie_id;
+    document.getElementById('image').src = rsp.content[0].img_link;
     document.getElementById('dl_link').innerHTML = 'Click on image and get download link.'
 
     append_list();

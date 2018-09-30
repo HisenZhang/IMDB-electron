@@ -18,16 +18,19 @@ def get_video_arg_process(db,movie_id):
 		return db.select_by_kw(multi_kw_query)
 		
 def create_result_json(result):
-	result_json = []
-	for i in range(0,len(result)):
-		result_json += [{
+	result_len = len(result)
+	movie_list = []
+	for i in range(0,result_len):
+		movie_list.append({
 			'movie_id':result[i][0],
 			'title':result[i][1],
 			'theme':result[i][2],
 			'date':result[i][3],
 			'img_link':result[i][4],
 			'pg_link':result[i][5]
-		}]
+		})
+	result_json = {"meta":{"length":result_len},"content":movie_list}
+	# print(result_json)
 	return result_json
 
 def fetch_dl_link(dl_url):
